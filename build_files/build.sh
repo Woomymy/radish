@@ -12,8 +12,20 @@ cp -avf "/ctx/system_files"/. /
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
+# Add 45drives repo
+cat << EOF > /etc/yum.repos.d/45drives.repo
+[45drives_enterprise]
+enabled = 1
+priority = 1
+gpgcheck = 1
+repo_gpgcheck = 1
+baseurl = https://repo.45drives.com/enterprise/rocky/el8/stable
+gpgkey = https://repo.45drives.com/key/gpg.asc
+name = 45Drives Enterprise 8 Repo
+EOF
+
 # this installs a package from fedora repos
-dnf5 install -y tmux
+dnf5 install -y borgbackup cockpit-file-sharing
 
 # Use a COPR Example:
 #
